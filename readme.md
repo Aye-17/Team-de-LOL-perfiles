@@ -1,2 +1,2 @@
-Proyecto: Perfiles de jugadores de lol
+Perfiles de jugadores de lol -
 Facu, Kevin, Maxi, Layla y Ella
