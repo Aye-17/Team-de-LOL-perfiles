@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Plantilla Burbuja</title>
+<style>
+body{margin:0;background:#0b1220;color:#eef2ff;font-family:Segoe UI,Arial,sans-serif}
+header{background:linear-gradient(90deg,#f07c46,#be0d0d);padding:42px}
+.container{max-width:1150px;margin:auto;padding:30px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{background:#172033;border-radius:16px;padding:22px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+h1{margin:0;font-size:42px}
+h2{color:#daa430;border-bottom:1px solid #334155;padding-bottom:6px}
+.badge{display:inline-block;background:#e45e10;padding:8px 14px;border-radius:20px;margin:5px}
+table{width:100%;border-collapse:collapse}
+td{padding:8px;border-bottom:1px solid #334155}
+.footer{text-align:center;color:#94a3b8;padding:20px}
+</style>
+</head>
+<body>
+
+<!-- ==========================================================
+EDITAR SOLAMENTE EL OBJETO "jugador"
+La foto debe estar en la misma carpeta que este HTML.
+=========================================================== -->
+
+<script>
+const jugador={
+foto:"../imagenes/ezreal.png",
+nombre:"Ryan Gosling#LAwwe",
+rango:"Esmeralda IV",
+roles:"ADC Principal • Support Secundario",
+champions:["Graves","Lee Sin","Wukong", "Xin Zhao", "Warwick", "Viego"],
+perfil:"Jungla de carry con gran impacto mecánico. Tiende a obtener muchas ventajas personales y convertirse en una de las principales fuentes de daño del equipo.",
+fortalezas:[
+"Mejoró su sentido de liderazgo.",
+"Está más pendiente al mapa y a lo que necesite el team.",
+"Aprovecha cada situación para sacar ventaja."
+],
+mejorar:[
+"Mejorar la comunicación.",
+"Debe comunicar más los ganks.",
+"Comunicar estrategias que le gustaría desarrollar."
+],
+evaluacion:{
+    "Champion Pool":"⭐⭐⭐⭐☆",
+    "Mecánicas":"⭐⭐⭐⭐☆",
+    "Macro":"⭐⭐⭐⭐☆",
+    "Comunicación":"⭐⭐⭐☆☆",
+    "Confianza":"⭐⭐⭐⭐☆",
+    "Potencial":"⭐⭐⭐⭐⭐"
+},
+nota:"Kevin sabe sacar ventaja de muchas maneras pero deberá tener más en cuenta al equipo para que todos logren terminar la partida en conjunto con el beneficio de su daño y sus jugadas. No se le escucha antes de gankear la jugada que le gustaría hacer y ese error tarde o temprano podrá afectar en la partida. Tener confianza con los demás para comunicarse lo hará llegar muy lejos."
+};
+</script>
+
+<header id="header"></header>
+<div class="container">
+<div class="grid">
+<div class="card">
+<h2>Champion Pool</h2>
+<div id="champions"></div>
+<h2>Perfil</h2>
+<p id="perfil"></p>
+</div>
+
+<div class="card">
+<h2>Fortalezas</h2>
+<ul id="fort"></ul>
+<h2>Aspectos a mejorar</h2>
+<ul id="mej"></ul>
+</div>
+
+<div class="card">
+<h2>Evaluación</h2>
+<table id="evaluacion"></table>
+</div>
+
+<div class="card">
+<h2>Nota del Coach</h2>
+<p id="nota"></p>
+</div>
+</div>
+<div class="footer">Dashboard de Coaching • Plantilla Burbuja</div>
+</div>
+
+<script>
+header.innerHTML=`
+<img src="${jugador.foto}" style="width:96px;height:96px;object-fit:cover;border-radius:50%;float:right;border:3px solid white">
+<h1>${jugador.nombre} • ${jugador.rango}</h1>
+<p>${jugador.roles}</p>`;
+jugador.champions.forEach(c=>champions.innerHTML+=`<span class="badge">${c} ⭐</span>`);
+perfil.textContent=jugador.perfil;
+jugador.fortalezas.forEach(x=>fort.innerHTML+=`<li>${x}</li>`);
+jugador.mejorar.forEach(x=>mej.innerHTML+=`<li>${x}</li>`);
+const tablaEvaluacion = document.getElementById("evaluacion");
+
+for (const [k, v] of Object.entries(jugador.evaluacion)) {
+    tablaEvaluacion.innerHTML += `
+        <tr>
+            <td>${k}</td>
+            <td>${v}</td>
+        </tr>`;
+}
+
+const nota = document.getElementById("nota");
+nota.textContent = jugador.nota;
+</script>
+
+</body>
+</html>
+
+
+<table id="evaluacion"></table>

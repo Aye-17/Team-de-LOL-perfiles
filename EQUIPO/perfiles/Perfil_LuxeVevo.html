@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Plantilla Burbuja</title>
+<style>
+body{margin:0;background:#0b1220;color:#eef2ff;font-family:Segoe UI,Arial,sans-serif}
+header{background:linear-gradient(90deg,#7c3aed,#2563eb);padding:42px}
+.container{max-width:1150px;margin:auto;padding:30px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{background:#172033;border-radius:16px;padding:22px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+h1{margin:0;font-size:42px}
+h2{color:#c4b5fd;border-bottom:1px solid #334155;padding-bottom:6px}
+.badge{display:inline-block;background:#4338ca;padding:8px 14px;border-radius:20px;margin:5px}
+table{width:100%;border-collapse:collapse}
+td{padding:8px;border-bottom:1px solid #334155}
+.footer{text-align:center;color:#94a3b8;padding:20px}
+</style>
+</head>
+<body>
+
+<!-- ==========================================================
+EDITAR SOLAMENTE EL OBJETO "jugador"
+La foto debe estar en la misma carpeta que este HTML.
+=========================================================== -->
+
+<script>
+const jugador={
+foto:"../imagenes/aatrox.png",
+nombre:"LuxeVevo#LOL",
+rango:"Oro IV",
+roles:"Top Principal • Jungla Secundario",
+champions:["Aatrox","Ambessa","Renekton"],
+perfil:"Bruiser de iniciativa con potencial para liderar peleas. Su mayor crecimiento vendrá de ganar confianza para comunicar y ejecutar decisiones importantes.",
+fortalezas:[
+"Mejoró la comunicación con el equipo.",
+"Entró más en confianza con los chicos.",
+"Hace buenos inicios de teamfights.",
+"Ayuda al jungla con los objetivos de top."
+],
+mejorar:[
+"Sacarle más provecho a su ventaja.",
+"Impactar al resto del mapa cuando obtiene ventaja.",
+"Buscar 1 o 2 TP a bot por partida en buenas oportunidades."
+],
+evaluacion:{
+    "Champion Pool":"⭐⭐⭐⭐☆",
+    "Mecánicas":"⭐⭐⭐☆☆",
+    "Macro":"⭐⭐⭐⭐☆",
+    "Comunicación":"⭐⭐⭐⭐☆",
+    "Confianza":"⭐⭐⭐⭐☆",
+    "Potencial":"⭐⭐⭐⭐⭐"
+},
+nota:"Facu tiene iniciativa y sabe manejar bien las teamfights, tiene que aprovechar al máximo su fortaleza y castigar a todo enemigo que se le cruce, si salió victorioso de su linea deberá ayudar al resto de su equipo a ganar cada batalla, su Champion Pool debería ayudarlo a entrar en peleas sin miedo y con mayor porcentaje de victoria."
+};
+</script>
+
+<header id="header"></header>
+<div class="container">
+<div class="grid">
+<div class="card">
+<h2>Champion Pool</h2>
+<div id="champions"></div>
+<h2>Perfil</h2>
+<p id="perfil"></p>
+</div>
+
+<div class="card">
+<h2>Fortalezas</h2>
+<ul id="fort"></ul>
+<h2>Aspectos a mejorar</h2>
+<ul id="mej"></ul>
+</div>
+
+<div class="card">
+<h2>Evaluación</h2>
+<table id="evaluacion"></table>
+</div>
+
+<div class="card">
+<h2>Nota del Coach</h2>
+<p id="nota"></p>
+</div>
+</div>
+<div class="footer">Dashboard de Coaching • Plantilla Burbuja</div>
+</div>
+
+<script>
+header.innerHTML=`
+<img src="${jugador.foto}" style="width:96px;height:96px;object-fit:cover;border-radius:50%;float:right;border:3px solid white">
+<h1>${jugador.nombre} • ${jugador.rango}</h1>
+<p>${jugador.roles}</p>`;
+jugador.champions.forEach(c=>champions.innerHTML+=`<span class="badge">${c} ⭐</span>`);
+perfil.textContent=jugador.perfil;
+jugador.fortalezas.forEach(x=>fort.innerHTML+=`<li>${x}</li>`);
+jugador.mejorar.forEach(x=>mej.innerHTML+=`<li>${x}</li>`);
+const tablaEvaluacion = document.getElementById("evaluacion");
+
+for (const [k, v] of Object.entries(jugador.evaluacion)) {
+    tablaEvaluacion.innerHTML += `
+        <tr>
+            <td>${k}</td>
+            <td>${v}</td>
+        </tr>`;
+}
+
+const nota = document.getElementById("nota");
+nota.textContent = jugador.nota;
+</script>
+
+</body>
+</html>
+
+
+<table id="evaluacion"></table>
